@@ -1,0 +1,112 @@
+SREL scavenger disturbance
+
+New intro
+- we know scavenger has net effects but no one has isolated the effects of vertebrate scavenging (i.e., biopedturbation and nutrient input)
+- with carcass you get heavy gradient scavengers did alter the effects of carcass by dampening the slope 
+- above and beyond that we detected changes in the plant community, it was from different plants colonizing afterwards which pushed it farther away from the referebce,
+
+- PLANTS IN OC
+woodsorrel, yellow.eye, forb7, rubus, forb.4, forb 5, unk.plant.6, croton, aster 4
+
+- PLANTS IN THE CC
+forb3,
+
+*SCAVENGERS ALSO GET RID OF DISTANCE INTERACTION IN CLOSE ZONE. INCREASES DISTURBANCE. 0 and 1 the same, but with the cage big turnover.
+
+not richness
+dispersion 
+stems
+change relative to reference (wit CI)
+shift from perennial to ruderal
+
+- To do
+	- DROP ANY NON CARRION PLOTS (2 for each plot)
+	- FIXED: check block 18 3 CC
+	- be careful rounding
+	- raster missing original data points?
+	- calculate odds
+	- fix the raster dataframe
+	- how far away does carrion impact
+
+- Analysis problems
+	- predicting outside the range of values in the figure
+	- not truly independent trials
+
+- Analysis plan
+	- Test for differences across all four? sample surveys
+	- show soil disturbance
+	- show how soil disturbance correlates with changes in plant community
+
+- Soil disturbance plant survey raw data changes
+	- PLACEHOLDERS ARE NA, BLANKS are TRUE ZEROS
+	- Changed empty cells to placeholder
+	- changed 4 C to 4CC
+	- changed reference plots to REF
+	- remvoed asterisk from number and "collected" to notes
+	- changed closed to caged
+	- change 38 plot 2 to plot 1 based on plot map
+	- changed 16 ref to 19 ref bsaed on position and plot map
+	- chaneg 38 3OC meter south 4 to meter 3
+	- fixed 38 REF WEST to EAST (815:824)
+	- added 38 6 CS WEST 3m placeholder
+	- added 37 REF EAST 3 blank, added west data
+	- ADDED 20 1 OS WEST PLACEHOLDERS
+	- ADDED 20 3 CS WEST PLACEHOLDERS
+	- ADDED 20 4 OP WEST PLACEHOLDERS
+	- ADDED 19 1 OS, 2 OP, 3 CS WEST PLACEHOLDERS
+	- ADDED 18 5 OS, 6 CS PLACEHOLDERS
+	- ADDED 5 6 CS, 3 OP, 4 OSPLACEHOLDERS
+	- fixed labels on 18 (3CC was not labeled correctly, 4OP was missing)
+	
+	
+- Soil disturbance raw data changes
+	- incomplete sites for several sites
+	- April 2022 changed block 38 plot 2 to plot 1 after cross referencing with previous sites
+	- Dec 2020 changed block 5 from OP to CP after cross referencing site map in notes
+	- Changed reference plots in both
+		- DECEM changed exclusion and addition to REF, changed CLOSED to CAGED
+		- APRIL changed plot to 0 and exclusion to REF
+	- Changed 4CC to 3CC
+	- Changed 6/4 value to 5 (there was wood causing confusion)
+	
+- Camera traps
+	- eprcentage of camera trap detections WHILE WE SEE CARRION
+
+- Timeline check
+	- Pre survey Late summer and fall of 2020
+	- Pigs deployed afterward (could find the date of carrion deployment to ascertain plant survey date)
+	- Sampled soil disturbance December 2020
+	- Sampled veg for main and side experiment in April and August 2021, finished in April 2022
+	- Sampled veg and soil disturbance WITH veg in April 2022
+
+
+- Raw data
+	- Small rite-in-rain has pre survey data an
+
+- test difference between veg sites
+- 
+
+# Changes to data sheet for baseline (2020)
+- remove K:AA, 
+- remove 0 values: these are valeus from the April sample (first survey) that was combined with the pre survey in the main experiment
+					FABACEAE, FERN_WING, GAY, GERANIUM, GAOF, WIREWEEED, HEDR, LACTUCA2, LACTUCA, VACCINIUM,
+					UNK2 (old), TRPE4, TRADE, TOOTH, SMILAX, RUBUS, SASS, SENNA, RHUS, RHYN, RED-MIDVEIN, POCI,
+					PERF, PARTH, PARONCHYIA, OAK, LOPE, MIMOSA, NUTE, CYPERACEAE, DOCK, PRSE, CLMA, BLACKGUM
+						
+- FAB1 becomes UNKFAB1
+- FABVine becomes UNKFAB2
+- FERN_LIKE becomes UNK3
+- WWAC becomes UNK4
+- Delete DAY AND MONTH (unknown at this time)
+
+binnedplot(predict(rm.mod, type="response", re.form=NULL),
+					 resid(rm.mod, type="response"), main='With random effects', nclass=20)
+
+result <- binned_residuals(rm.mod)
+plot(result)
+
+binnedplot(fitted(rm.mod), resid(rm.mod,type="response"))
+
+
+library(arm)
+binnedplot(fitted(rm.mod), resid(rm.mod,type="response"))
